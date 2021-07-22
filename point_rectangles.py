@@ -32,7 +32,7 @@ class Point_Rectangles:
         Returns:
             [list]: Last four coordenates of the last captured rectangle
         """
-        return self._rectangle_corners_coordinates
+        return self._rectangle_corners_coordinates[:]
 
     @property 
     def get_rectangles_coordenates(self):
@@ -41,7 +41,7 @@ class Point_Rectangles:
         Returns:
             [list]: Coordinate lists
         """
-        return self._rectangle_coordenates
+        return self._rectangle_coordenates[:]
 
     @property
     def get_rectangles_registered(self):
@@ -142,7 +142,7 @@ class Point_Rectangles:
                 print(f"> New origin setted: {self._origin_point} => (0, 0)")
             
             if cmd == "" and self._capture_started and not self._rectangles_captured:
-                self._current_position = tuple(map(lambda current_pos, origin: current_pos - origin, self.mouse_ctrl.position, self._origin_point))
+                self._current_position = list(tuple(map(lambda current_pos, origin: current_pos - origin, self.mouse_ctrl.position, self._origin_point)))
                 
                 self._add_corner(self._current_position)
 
