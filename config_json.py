@@ -47,11 +47,12 @@ class Config_Json:
 
     #region <Constructor>
 
-    def __init__(self, calibration_coord):
-        self.calibration_coordenates = calibration_coord[:]
-        # self._calibration_coordenates = calibration_coordenetaes[:]
+    def __init__(self, calibration_coord=None):
+        if calibration_coord is not None:
+            self.calibration_coordenates = calibration_coord[:]
+            # self._calibration_coordenates = calibration_coordenetaes[:]
 
-        self.save_calibration()
+            self.save_calibration()
 
     #endregion
 

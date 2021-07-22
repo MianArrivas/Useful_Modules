@@ -7,6 +7,8 @@ class Point_Rectangles:
 
     #region <Variables>
 
+    _EMPTY_NULL_ARRAY = [None, None, None, None]
+
     _capture_started = False
     _rectangles_captured = False
     _origin_point = (0, 0)
@@ -32,15 +34,21 @@ class Point_Rectangles:
         Returns:
             [list]: Last four coordenates of the last captured rectangle
         """
+        if not self._rectangle_corners_coordinates:
+            self._rectangle_corners_coordinates = self._EMPTY_NULL_ARRAY[:]
+
         return self._rectangle_corners_coordinates[:]
 
-    @property 
+    @property
     def get_rectangles_coordenates(self):
-        """Retrieves all the captured rectangles coordenates 
+        """Retrieves all the captured rectangles coordenates
 
         Returns:
             [list]: Coordinate lists
         """
+        if not self._rectangle_coordenates:
+            self._rectangle_coordenates = self._EMPTY_NULL_ARRAY[:]
+
         return self._rectangle_coordenates[:]
 
     @property
@@ -115,8 +123,13 @@ class Point_Rectangles:
             print(f"> Corner capture not ready...")
             self._capture_started = False
 
+    def _clean_array(self):
+        """Cleans up all the arrays that were being filled
+        """
+        self._rectangle_corners_coordinates = []
+        self._rectangle_coordenates = []
 
-    #enderegion
+    #endregion
 
     #region <Public Methods>
 
@@ -155,7 +168,7 @@ class Point_Rectangles:
                 break
                 
             if (cmd == "-q" or cmd == "--quit"):
-                # TODO: Crear una funcion que limpie todos los elementos y devuelva un array de ceros
+                self._clean_array()
 
                 print("Exiting the rectangle capture, nothig has been saved")
                 break
